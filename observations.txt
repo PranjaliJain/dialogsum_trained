@@ -10,7 +10,10 @@ Dialogsumm:
 
 TweetSumm:
 - Epoch = 2 for tweetsumm pegasus, max_input_length = 256
-
+- Epoch = 3 for tweetsumm pegasus, max_input_length = 256 --> overfits, R1 = 35
+- Pegasus:
+    - max_input_length = 512 --> R1 = 45
+    - max_input_length = 254 --> R1 = 41.4
 
 Thursday: 
 - model save 
