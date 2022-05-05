@@ -3,10 +3,11 @@ from datasets import load_metric,Dataset,DatasetDict
 from transformers import AutoModelForSeq2SeqLM, DataCollatorForSeq2Seq, Seq2SeqTrainingArguments, Seq2SeqTrainer
 from transformers import BartForConditionalGeneration, BartTokenizer
 from transformers import AutoTokenizer
-import os
+# import os
 from torch import nn 
+import torch
 
-os.environ['CUDA_VISIBLE_DEVICES']="6,7"
+# os.environ['CUDA_VISIBLE_DEVICES']="6,7"
 
 model_checkpoint = "facebook/bart-large"
 metric = load_metric("rouge")
