@@ -1,0 +1,18 @@
+Dialogsumm:
+- cuda from os -- commented out
+- using cuda from torch 
+- use batch_size = 1 to get time around 8 hrs with GPU
+- use batch_size = 16 to get time around 4 hrs with GPU - but it goes out of memory
+- use batch_size = 4 to get time around 5   hrs with GPU
+- BartCondiitonalGeneration model being used not Auto
+- Added freezing
+
+
+TweetSumm:
+- Epoch = 2 for tweetsumm pegasus, max_input_length = 256
+
+
+Thursday: 
+- model save 
+- checkpoint save
+- dialogsumm for BART with 4 batch_size

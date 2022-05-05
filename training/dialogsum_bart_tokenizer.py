@@ -115,6 +115,9 @@ args = Seq2SeqTrainingArguments(
     # greater_is_better=True,
     # seed=42,
     # generation_max_length=max_target_length,
+    push_to_hub=False,
+    output_dir = '/content/drive/MyDrive/<>', 
+    logging_dir = '/content/drive/MyDrive/<>'
 )
 
 
@@ -178,6 +181,8 @@ decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
 decoded_preds = [" ".join(nltk.sent_tokenize(pred.strip())) for pred in decoded_preds]
 decoded_labels = [" ".join(nltk.sent_tokenize(label.strip())) for label in decoded_labels]
 
+
+torch.save(model, '/content/drive/MyDrive/<>')
 
 # output summaries on test set
 with open("test_output.txt","w") as f: 
