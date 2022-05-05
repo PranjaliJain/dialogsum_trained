@@ -95,7 +95,10 @@ def preprocess_function(examples):
 
 tokenized_datasets = raw_datasets.map(preprocess_function, batched=True)
 
-batch_size = 16
+
+## use batch_size = 1 to get time around 8 hrs with GPU
+## use batch_size = 16 to get time around 4 hrs with GPU - but it goes out of memory
+batch_size = 1
 args = Seq2SeqTrainingArguments(
     "BART-LARGE-DIALOGSUM",
     evaluation_strategy = "epoch",
