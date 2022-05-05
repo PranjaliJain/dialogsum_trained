@@ -1,3 +1,11 @@
+## Install these before running:
+
+# !pip install datasets
+# !pip install transformers
+# !pip install rouge_score
+
+
+
 import json
 from datasets import load_metric,Dataset,DatasetDict
 from transformers import AutoModelForSeq2SeqLM, DataCollatorForSeq2Seq, Seq2SeqTrainingArguments, Seq2SeqTrainer
