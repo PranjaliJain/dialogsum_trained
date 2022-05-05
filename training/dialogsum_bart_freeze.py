@@ -3,11 +3,12 @@ from datasets import load_metric,Dataset,DatasetDict
 from transformers import AutoModelForSeq2SeqLM, DataCollatorForSeq2Seq, Seq2SeqTrainingArguments, Seq2SeqTrainer
 from transformers import AutoTokenizer
 import os
+from torch import nn 
 
 os.environ['CUDA_VISIBLE_DEVICES']="6,7"
 
 model_checkpoint = "facebook/bart-large"
-metric = load_metric("rouge.py")
+metric = load_metric("rouge")
 
 TEST_SUMMARY_ID = 1
 
@@ -40,7 +41,7 @@ def transform_dialogsumm_to_huggingface_dataset(train,validation,test):
     test = transform_test_file(test)
     return DatasetDict({"train":train,"validation":validation,"test":test})
 
-raw_datasets = transform_dialogsumm_to_huggingface_dataset("../DialogSum_Data/dialogsum.train.jsonl","../DialogSum_Data/dialogsum.dev.jsonl","../DialogSum_Data/dialogsum.test.jsonl")
+raw_datasets = transform_dialogsumm_to_huggingface_dataset("/content/dialogsum_trained/DialogSum_Data/dialogsum.train.jsonl","/content/dialogsum_trained/DialogSum_Data/dialogsum.dev.jsonl","/content/dialogsum_trained/DialogSum_Data/dialogsum.test.jsonl")
 
 
 model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
