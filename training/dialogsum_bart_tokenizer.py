@@ -1,10 +1,13 @@
 ## Install these before running:
 
+# !git clone https://github.com/PranjaliJain/dialogsum_trained.git
+# !git pull 
 # !pip install datasets
 # !pip install transformers
 # !pip install rouge_score
 
-
+# Run using: 
+# !python3 /content/dialogsum_trained/training/dialogsum_bart_tokenizer.py
 
 import json
 from datasets import load_metric,Dataset,DatasetDict
@@ -116,8 +119,8 @@ args = Seq2SeqTrainingArguments(
     # seed=42,
     # generation_max_length=max_target_length,
     push_to_hub=False,
-    output_dir = '/content/drive/MyDrive/<>', 
-    logging_dir = '/content/drive/MyDrive/<>'
+    output_dir = '/content/drive/MyDrive/project/results/dialogsumm-bart', 
+    logging_dir = '/content/drive/MyDrive/project/results/dialogsumm-bart'
 )
 
 
@@ -182,7 +185,7 @@ decoded_preds = [" ".join(nltk.sent_tokenize(pred.strip())) for pred in decoded_
 decoded_labels = [" ".join(nltk.sent_tokenize(label.strip())) for label in decoded_labels]
 
 
-torch.save(model, '/content/drive/MyDrive/<>')
+torch.save(model, '/content/drive/MyDrive/project/models/dialogsumm-bart')
 
 # output summaries on test set
 with open("test_output.txt","w") as f: 
