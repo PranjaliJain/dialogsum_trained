@@ -44,6 +44,8 @@ def transform_dialogsumm_to_huggingface_dataset(train,validation,test):
 
 raw_datasets = transform_dialogsumm_to_huggingface_dataset("/content/dialogsum_trained/DialogSum_Data/dialogsum.train.jsonl","/content/dialogsum_trained/DialogSum_Data/dialogsum.dev.jsonl","/content/dialogsum_trained/DialogSum_Data/dialogsum.test.jsonl")
 
+torch_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 
 model = BartForConditionalGeneration.from_pretrained(model_checkpoint)
 tokenizer = BartTokenizer.from_pretrained(model_checkpoint)
@@ -88,19 +90,19 @@ batch_size = 16
 args = Seq2SeqTrainingArguments(
     "BART-LARGE-DIALOGSUM",
     evaluation_strategy = "epoch",
-    learning_rate=3e-5,
+    learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
     weight_decay=0.01,
-    save_total_limit=1,
-    num_train_epochs=5,
+    save_total_limit=3,
+    num_train_epochs=3,
     predict_with_generate=True,
     fp16=True,
-    save_strategy="epoch",
-    metric_for_best_model="eval_rouge1",
-    greater_is_better=True,
-    seed=42,
-    generation_max_length=max_target_length,
+    # save_strategy="epoch",
+    # metric_for_best_model="eval_rouge1",
+    # greater_is_better=True,
+    # seed=42,
+    # generation_max_length=max_target_length,
 )
 
 
