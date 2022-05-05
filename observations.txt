@@ -15,4 +15,4 @@ TweetSumm:
 Thursday: 
 - model save 
 - checkpoint save
-- dialogsumm for BART with 4 batch_size
+- dialogsumm for BART with 1 or 4 batch_size
